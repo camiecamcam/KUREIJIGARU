@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <title>Kureijigaru Manual</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="guide-page">
+    <div class="guide-shell manual-shell">
+      <header class="guide-topbar">
+        <a class="guide-brand" href="welcome.html">Kureijigaru</a>
+        <nav class="guide-nav" aria-label="Main navigation">
+          <a href="welcome.html">Welcome</a>
+          <a class="guide-nav-strong" href="index.html">Open review app</a>
+          <button class="theme-toggle" type="button" data-theme-toggle data-tooltip="Switch between light and dark appearance." data-tooltip-placement="right" aria-label="Switch to light theme">
+            <span class="theme-toggle-track" aria-hidden="true"><span></span></span>
+            <span data-theme-label>Light theme</span>
+          </button>
+        </nav>
+      </header>
+
+      <main class="manual-main">
+        <p class="guide-kicker">QUICK REFERENCE</p>
+        <h1>Review and rename PDFs</h1>
+        <p class="manual-lede">Kureijigaru reads document text and scans pages when needed to suggest a primary name. You review every suggestion; the app never renames a file without your approval.</p>
+
+        <section class="manual-section" id="folder-access">
+          <p class="manual-number">01 / LOAD FILES</p>
+          <h2>Select Folder or Open PDFs?</h2>
+          <div class="manual-columns">
+            <div>
+              <h3>Select Folder</h3>
+              <p>Choose the folder containing your PDFs. In a supported browser on localhost or HTTPS, grant read and write access. The app can then rename the original file in that folder.</p>
+            </div>
+            <div>
+              <h3>Open PDFs</h3>
+              <p>Choose one or more PDF files to review. This grants read access only. <strong>Approve &amp; Download</strong> saves a renamed copy; it does not change the original.</p>
+            </div>
+          </div>
+          <p class="manual-callout">For direct in-place renaming, start the app with <code>start-local-app.bat</code>, open it in Chrome or Edge, then use <strong>Select Folder</strong>. Keep the launcher window open.</p>
+        </section>
+
+        <section class="manual-section">
+          <p class="manual-number">02 / REVIEW</p>
+          <h2>Check the suggestion</h2>
+          <p>Select a PDF in the left list. The center preview shows its pages; use Previous and Next to move through the document and the plus/minus controls to zoom.</p>
+          <p>The primary-name field contains the current suggestion. OCR and text extraction can be imperfect, especially on scans and handwriting, so verify the name against the document before approving.</p>
+          <p>Use search to find a filename or name. The filters narrow the list to all documents, items needing review, approved items, handwriting, or failures.</p>
+        </section>
+
+        <section class="manual-section">
+          <p class="manual-number">03 / NAME ACTIONS</p>
+          <h2>What each action does</h2>
+          <dl class="manual-actions">
+            <div><dt>Approve &amp; Rename</dt><dd>Renames the selected original PDF in the chosen folder. If that name already exists, a numbered suffix is added. This cannot be undone outside the app.</dd></div>
+            <div><dt>Edit &amp; Rename</dt><dd>Accepts the text currently in the primary-name field as your reviewed name. It does not rename the file yet; use Approve &amp; Rename afterward.</dd></div>
+            <div><dt>Skip</dt><dd>Marks this item skipped and keeps its filename unchanged.</dd></div>
+            <div><dt>Review Later</dt><dd>Marks the item for another look without renaming it.</dd></div>
+            <div><dt>Undo Last Rename</dt><dd>Restores the most recently renamed PDF to its previous filename during the current session.</dd></div>
+          </dl>
+        </section>
+
+        <section class="manual-section">
+          <p class="manual-number">04 / STATUS</p>
+          <h2>Read the review list</h2>
+          <p><strong>Pending</strong> means processing is complete and the item is waiting for your decision. <strong>Needs Review</strong> means the extracted name should be checked. <strong>Handwritten</strong> means the page needs a careful manual read. <strong>Failed</strong> means preview or processing could not complete.</p>
+          <p>The processed count tracks completed items. The status strip below the preview reports the latest action or error.</p>
+        </section>
+      </main>
+
+      <footer class="guide-footer">
+        <a href="welcome.html">Back to welcome</a>
+        <a href="index.html">Open Kureijigaru</a>
+      </footer>
+    </div>
+  </body>
+</html>

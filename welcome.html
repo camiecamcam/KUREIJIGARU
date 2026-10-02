@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#111827" />
+    <title>Welcome to Kureijigaru</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body class="guide-page">
+    <div class="guide-shell welcome-shell">
+      <header class="guide-topbar">
+        <a class="guide-brand" href="welcome.html">Kureijigaru</a>
+        <nav class="guide-nav" aria-label="Main navigation">
+          <a href="manual.html">Manual</a>
+          <a class="guide-nav-strong" href="index.html">Open review app</a>
+          <button class="theme-toggle" type="button" data-theme-toggle data-tooltip="Switch between light and dark appearance." data-tooltip-placement="right" aria-label="Switch to light theme">
+            <span class="theme-toggle-track" aria-hidden="true"><span></span></span>
+            <span data-theme-label>Light theme</span>
+          </button>
+        </nav>
+      </header>
+
+      <main class="welcome-main">
+        <section class="welcome-intro">
+          <p class="guide-kicker">PDF NAME REVIEW</p>
+          <h1>Welcome to<br />Kureijigaru.</h1>
+          <p class="welcome-lede">A careful workspace for reviewing PDF names and renaming one document at a time.</p>
+          <div class="guide-actions">
+            <a class="guide-button guide-button-primary" href="index.html">Open the app</a>
+            <a class="guide-button" href="manual.html">Read the manual</a>
+          </div>
+        </section>
+
+        <section class="welcome-steps" aria-label="How the review works">
+          <h2>Review at your pace</h2>
+          <ol>
+            <li><span>01</span><div><strong>Choose a folder</strong><p>Load its PDFs and grant access for in-place renaming.</p></div></li>
+            <li><span>02</span><div><strong>Check each name</strong><p>Review the preview and correct the suggested primary name.</p></div></li>
+            <li><span>03</span><div><strong>Approve the change</strong><p>Only an explicit approval renames the original document.</p></div></li>
+          </ol>
+          <p class="welcome-note">Opening PDFs directly is read-only. See the <a href="manual.html#folder-access">folder access notes</a> for the difference.</p>
+        </section>
+      </main>
+
+      <footer class="guide-footer">
+        <span>One document. One review. Your approval.</span>
+        <a href="manual.html">How Kureijigaru works</a>
+      </footer>
+    </div>
+  </body>
+</html>

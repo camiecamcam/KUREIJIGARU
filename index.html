@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kureijigaru | Document Review</title>
+    <script src="theme.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5.0.0/dist/tesseract.min.js"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar left-panel">
+        <div class="panel-header">
+          <h1 data-tooltip="Kureijigaru is a review-first PDF naming tool. You approve every original-file rename.">Document Review</h1>
+        </div>
+
+        <nav class="app-help-links" aria-label="Help pages">
+          <a href="welcome.html" data-tooltip="Welcome page and a short introduction to Kureijigaru.">Welcome</a>
+          <a href="manual.html" data-tooltip="Open the manual for the full review and rename workflow.">Manual</a>
+          <button class="theme-toggle" type="button" data-theme-toggle data-tooltip="Switch between light and dark appearance." data-tooltip-placement="right" aria-label="Switch to light theme">
+            <span class="theme-toggle-track" aria-hidden="true"><span></span></span>
+            <span data-theme-label>Light theme</span>
+          </button>
+        </nav>
+
+        <div class="toolbar">
+          <button id="selectFolderBtn" class="primary" data-tooltip="Choose a folder and grant write access to rename original PDFs in place.">Select Folder</button>
+          <button id="openPdfBtn" data-tooltip="Load PDF files for review only. Approving in this mode downloads renamed copies.">Open PDFs</button>
+          <button id="processBtn" data-tooltip="Run text extraction and OCR again for the loaded PDFs.">Process PDFs</button>
+          <input id="folderInput" type="file" webkitdirectory directory multiple accept="application/pdf,.pdf" hidden />
+          <input id="pdfInput" type="file" accept="application/pdf,.pdf" multiple hidden />
+        </div>
+
+        <div class="meta-grid">
+          <div>
+            <label data-tooltip="The folder currently loaded for review.">Folder</label>
+            <div id="folderName" class="muted" data-tooltip="The selected folder name appears here.">No folder selected</div>
+          </div>
+          <div>
+            <label data-tooltip="Completed items out of all loaded PDFs.">Processed</label>
+            <div id="processedCount" class="muted" data-tooltip="Completed items out of all loaded PDFs.">0 / 0</div>
+          </div>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter active" data-filter="all" data-tooltip="Show every loaded PDF.">All</button>
+          <button class="filter" data-filter="needs-review" data-tooltip="Show items that need a manual name check.">Needs Review</button>
+          <button class="filter" data-filter="approved" data-tooltip="Show items already renamed or downloaded.">Approved</button>
+          <button class="filter" data-filter="handwritten" data-tooltip="Show items flagged for handwriting review.">Handwritten</button>
+          <button class="filter" data-filter="failed" data-tooltip="Show items that failed to preview or process.">Failed</button>
+        </div>
+
+        <div class="search-box">
+          <input id="searchInput" type="search" placeholder="Search filename or primary name" data-tooltip="Filter the list by filename, suggested name, or status." />
+        </div>
+
+        <div id="fileList" class="file-list" data-tooltip="Select a PDF to preview it and review its suggested name."></div>
+      </aside>
+
+      <main class="viewer-panel">
+        <div class="viewer-header">
+          <div>
+            <div class="eyebrow" data-tooltip="The selected document preview appears below.">Preview</div>
+            <h2 id="docTitle" data-tooltip="The filename of the selected PDF.">No PDF selected</h2>
+          </div>
+          <div class="viewer-controls">
+            <button id="prevPageBtn" data-tooltip="Show the previous PDF page.">Previous</button>
+            <span id="pageCounter" data-tooltip="Current page and total page count.">Page 0 / 0</span>
+            <button id="nextPageBtn" data-tooltip="Show the next PDF page.">Next</button>
+            <button id="zoomOutBtn" aria-label="Zoom out" data-tooltip="Zoom out of the page preview.">-</button>
+            <button id="zoomInBtn" aria-label="Zoom in" data-tooltip="Zoom in on the page preview.">+</button>
+          </div>
+        </div>
+
+        <div id="previewWrap" class="preview-wrap" data-tooltip="Review each page here before approving a name.">
+          <div id="emptyState" class="empty-state" data-tooltip="Load a folder or PDF files to begin review.">Select a folder and process PDFs to begin.</div>
+          <canvas id="pdfCanvas" data-tooltip="Rendered PDF page preview." hidden></canvas>
+        </div>
+
+        <div id="statusBar" class="status-bar" data-tooltip="The latest processing result or action appears here.">
+          <span class="status-pill neutral">Idle</span>
+        </div>
+      </main>
+
+      <aside class="sidebar right-panel">
+        <div class="manual-box">
+          <label for="manualNameInput" data-tooltip="Review or enter the name that will be used for the approved filename.">Primary name</label>
+          <input id="manualNameInput" type="text" placeholder="Juan Dela Cruz" data-tooltip="Check or edit the name before approving the rename." />
+        </div>
+
+        <div class="action-grid">
+          <button id="approveBtn" class="primary wide" data-tooltip="After folder access is granted, rename this original PDF in place. In read-only mode, download a renamed copy.">Approve & Rename</button>
+          <button id="editNameBtn" class="wide" data-tooltip="Keep the entered primary name for review. This does not rename until you approve.">Edit & Rename</button>
+          <button id="skipBtn" class="wide alt" data-tooltip="Skip this PDF without changing its filename.">Skip</button>
+          <button id="reviewLaterBtn" class="wide alt" data-tooltip="Flag this PDF to review later without renaming it.">Review Later</button>
+          <button id="undoBtn" class="wide alt" data-tooltip="Restore the filename from your most recent in-session rename.">Undo Last Rename</button>
+        </div>
+
+        <div class="details-box" id="docDetails" data-tooltip="Name suggestion, processing status, OCR confidence, and review notes."></div>
+      </aside>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
